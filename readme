@@ -1,0 +1,59 @@
+Spring Boot 与 mybatis整合:
+1.导入依赖jar
+    <!--mybatis依赖包 ~~~~~~start~~~~~~~~~  -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>6.0.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.1.16</version>
+		</dependency>
+
+	如果用lombok则引入此jar
+	<!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+2.在server实现层添加@service注解,在dao接口层添加@Mapper注解
+
+3.添加mapper.xml配置文件
+
+4.将mapper.xml所有的目录注册为资源目录
+    <!--注册dao包下mybatis映射文件为资源目录 -->
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </resource>
+
+5.在yml文件中配置要注册的数据源,映射文件及实体类别名
+
+# 配置前缀和后缀
+    spring:
+      # 注册数据源
+      datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://10.6.202.101:3306/rentcar
+        username: hqzc_test
+        password: hqzc_test@com!
+
+
+    mybatis:
+      # 注册映射文件
+      mapper-locations: classpath:com/rom/dao/LoginMapper.xml
+      # 注册实体类别名
+      type-aliases-package: com.rom.pojo.domain
+

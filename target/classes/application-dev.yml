@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+# 配置前缀和后缀
+spring:
+  mvc:
+    view:
+      prefix: /jsp
+      suffix: .jsp
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.6.202.101:3306/rentcar
+    username: hqzc_test
+    password: hqzc_test@com!
+
+
+mybatis:
+  mapper-locations: classpath:com/rom/dao/LoginMapper.xml
+  type-aliases-package: com.rom.pojo.domain
+
